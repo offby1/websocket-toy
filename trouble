@@ -1,0 +1,54 @@
+gunicorn -k flask_sockets.worker hello:app
+2013-12-06 18:38:02 [11204] [INFO] Starting gunicorn 18.0
+2013-12-06 18:38:02 [11204] [INFO] Listening at: http://127.0.0.1:8000 (11204)
+2013-12-06 18:38:02 [11204] [INFO] Using worker: flask_sockets.worker
+2013-12-06 18:38:02 [11207] [INFO] Booting worker with pid: 11207
+I say: WebSocket rocks
+I say: None
+Traceback (most recent call last):
+  File "/Users/erichanchrow/.virtualenvs/flask/lib/python2.7/site-packages/gevent/pywsgi.py", line 508, in handle_one_response
+    self.run_application()
+  File "/Users/erichanchrow/.virtualenvs/flask/lib/python2.7/site-packages/geventwebsocket/handler.py", line 72, in run_application
+    self.run_websocket()
+  File "/Users/erichanchrow/.virtualenvs/flask/lib/python2.7/site-packages/geventwebsocket/handler.py", line 52, in run_websocket
+    self.application(self.environ, lambda s, h: [])
+  File "/Users/erichanchrow/.virtualenvs/flask/lib/python2.7/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/Users/erichanchrow/.virtualenvs/flask/lib/python2.7/site-packages/flask_sockets.py", line 39, in __call__
+    handler(environment)
+  File "/Users/erichanchrow/git-repositories/Me/flask/hello.py", line 12, in echo_socket
+    ws.send(message)
+  File "/Users/erichanchrow/.virtualenvs/flask/lib/python2.7/site-packages/geventwebsocket/websocket.py", line 346, in send
+    raise WebSocketError(MSG_SOCKET_DEAD)
+WebSocketError: Socket is dead
+{'GATEWAY_INTERFACE': 'CGI/1.1',
+ 'HTTP_CACHE_CONTROL': 'no-cache',
+ 'HTTP_CONNECTION': 'Upgrade',
+ 'HTTP_HOST': '127.0.0.1:8000',
+ 'HTTP_ORIGIN': 'null',
+ 'HTTP_PRAGMA': 'no-cache',
+ 'HTTP_SEC_WEBSOCKET_EXTENSIONS': 'x-webkit-deflate-frame',
+ 'HTTP_SEC_WEBSOCKET_KEY': '63F/Is82eU7XZsCZm13IqA==',
+ 'HTTP_SEC_WEBSOCKET_VERSION': '13',
+ 'HTTP_UPGRADE': 'websocket',
+ 'HTTP_USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36',
+ 'PATH_INFO': '/echo',
+ 'QUERY_STRING': '',
+ 'REMOTE_ADDR': '127.0.0.1',
+ 'REMOTE_PORT': '62997',
+ 'REQUEST_METHOD': 'GET',
+ 'SCRIPT_NAME': '',
+ 'SERVER_NAME': '1.0.0.127.in-addr.arpa',
+ 'SERVER_PORT': '8000',
+ 'SERVER_PROTOCOL': 'HTTP/1.1',
+ 'SERVER_SOFTWARE': 'gevent/1.0 gunicorn/18.0',
+ 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x100a001e0>,
+ 'wsgi.input': <gevent.pywsgi.Input object at 0x101335250>,
+ 'wsgi.multiprocess': False,
+ 'wsgi.multithread': False,
+ 'wsgi.run_once': False,
+ 'wsgi.url_scheme': 'http',
+ 'wsgi.version': (1, 0),
+ 'wsgi.websocket': <geventwebsocket.websocket.WebSocket object at 0x1012fb8a0>,
+ 'wsgi.websocket_version': '13'} failed with WebSocketError
+
