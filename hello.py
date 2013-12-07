@@ -4,6 +4,8 @@ from    flask_sockets import Sockets
 import  Queue
 import  time
 
+# TODO -- make these queues have a maximum size, to limit the
+# potential memory use
 messages_by_subscriber = collections.defaultdict(Queue.Queue)
 
 app = Flask(__name__)
@@ -21,5 +23,8 @@ def echo_socket(ws):
 @app.route('/update/<subscriber_id>/', methods=['POST'])
 def update(subscriber_id):
     print("update: subscriber_id is {}".format(subscriber_id))
+    # TODO -- ensure we don't block if the queue is full.  Perhaps
+    # "put" is already good enough; perhaps we want "put_nowait" or
+    # something.
     messages_by_subscriber[subscriber_id].put(request.form['stuff'])
     return make_response(subscriber_id, 204)
