@@ -3,8 +3,9 @@
 <title>WebSocket Test</title>
 <script language="javascript" type="text/javascript">
 
-var wsUri = "ws://127.0.0.1:8000/echo";
+var wsUri = "ws://127.0.0.1:8000/echo/";
 var output;
+var subscriber_id = 1234;
 
 function init()
 {
@@ -24,7 +25,7 @@ function testWebSocket()
 function onOpen(evt)
 {
     writeToScreen("CONNECTED");
-    doSend("WebSocket rocks");
+    doSend(subscriber_id);
 }
 
 function onClose(evt)
