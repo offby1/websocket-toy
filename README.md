@@ -4,6 +4,6 @@ Websocket example.
 
 - Point yon browser at file:///.../ws.html
 
-- Invoke ye shell command ``curl -d 'stuff=what it is' http://127.0.0.1:8000/update/``
+- Invoke ye shell command ``curl -d 'stuff=what it is' http://127.0.0.1:8000/update/1234/``
 
 You should see the message appear immediately in the browser.
