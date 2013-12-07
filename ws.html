@@ -10,7 +10,15 @@ var subscriber_id = 1234;
 function init()
 {
     output = document.getElementById("output");
+    addTitle();
     testWebSocket();
+}
+
+function addTitle()
+{
+    var pre = document.createElement("h1");
+    pre.innerHTML = "Messages for subscriber " + subscriber_id;
+    output.appendChild(pre);
 }
 
 function testWebSocket()
@@ -60,6 +68,5 @@ function writeToScreen(message)
 
 window.addEventListener("load", init, false);
 </script>
-<h2>WebSocket Test</h2>
 <div id="output"></div>
 </html>
