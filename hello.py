@@ -1,6 +1,7 @@
 import  collections
 from    flask import Flask, request, make_response
 from    flask_sockets import Sockets
+import  json
 import  Queue
 import  time
 
@@ -18,7 +19,7 @@ def echo_socket(ws):
     while True:
         m = messages_by_subscriber[subscriber_id].get()
         print("echo_socket: m is {}".format(m))
-        ws.send(m)
+        ws.send(json.dumps({'message': m, 'time': time.strftime("%c %z", time.localtime(time.time()))}))
 
 @app.route('/update/<subscriber_id>/', methods=['POST'])
 def update(subscriber_id):

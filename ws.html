@@ -11,6 +11,7 @@ function init()
 {
     output = document.getElementById("output");
     addTitle();
+    addDate();
     testWebSocket();
 }
 
@@ -18,6 +19,13 @@ function addTitle()
 {
     var pre = document.createElement("h1");
     pre.innerHTML = "Messages for subscriber " + subscriber_id;
+    output.appendChild(pre);
+}
+
+function addDate()
+{
+    var pre = document.createElement("p");
+    pre.innerHTML = "This page was loaded into your browser at " + Date();
     output.appendChild(pre);
 }
 
@@ -43,7 +51,10 @@ function onClose(evt)
 
 function onMessage(evt)
 {
-    writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
+    var parsed = JSON.parse (evt.data);
+    writeToScreen('at ' +  parsed.time
+                  + ', '
+                  + '<span style="color: blue;">RESPONSE: ' + parsed.message+'</span>');
     //websocket.close();
 }
 
